@@ -103,9 +103,13 @@
   </button>
 
   <!-- Аудио-трек -->
-  <audio id="myAudio" loop>
-    <source src="ustazym.mp3" type="audio/mpeg">
-    Браузеріңіз аудио ойнатуды қолдамайды.
+ <audio id="myAudio" muted autoplay loop controls>
+  <source src="ustazym.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  document.getElementById('myAudio').muted = false;
+</script>
   </audio>
 </body>
 
