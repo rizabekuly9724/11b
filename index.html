@@ -38,14 +38,29 @@
     .button:hover {
       background-color: #666;
     }
-
+.hero-image {
+  width: 100%;
+  max-height: 400px;
+  overflow: hidden;
+  margin-bottom: 30px;
+  border-radius: 10px;
+}
+.hero-image img {
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
-<body>
+<body> 
+<!-- Фото на главной -->
+<div class="hero-image">
+  <img src="IMG_5456.PNG" alt="Қош келдіңіздер!" />
+</div>
   <!-- Кнопка "Пуск" в виде иконки -->
   <button onclick="document.getElementById('myAudio').play()" style="background:none; border:none; cursor:pointer; font-size: 32px;">
     ▶️
