@@ -125,7 +125,6 @@
 <div class="hero-image">
 <img alt="Қош келдіңіздер!" src="IMG_5456.PNG"/>
 </div>
-
 <audio controls="" id="myAudio" loop="" style="width: 100%; max-width: 400px;">
 <source src="ustazym_fixed.mp3" type="audio/mpeg"/>
 </audio>
@@ -402,13 +401,15 @@ let galleryImages = Array.from(document.querySelectorAll('.photo-gallery img'));
 galleryImages.forEach((img, i) => {
   img.addEventListener('click', () => {
     currentIndex = i;
-    openLightbox(galleryImages[currentIndex].src);
+    showLightbox(galleryImages[currentIndex].src);
   });
 });
 
-function openLightbox(src) {
-  document.getElementById("lightbox-img").src = src;
-  document.getElementById("lightbox").style.display = "flex";
+function showLightbox(src) {
+  const lightbox = document.getElementById("lightbox");
+  const img = document.getElementById("lightbox-img");
+  img.src = src;
+  lightbox.style.display = "flex";
 }
 
 function closeLightbox() {
@@ -417,13 +418,8 @@ function closeLightbox() {
 
 function changeImage(dir) {
   currentIndex = (currentIndex + dir + galleryImages.length) % galleryImages.length;
-  openLightbox(galleryImages[currentIndex].src);
+  const img = document.getElementById("lightbox-img");
+  img.src = galleryImages[currentIndex].src;
 }
-
-document.addEventListener("keydown", function(e) {
-  if (e.key === "ArrowRight") changeImage(1);
-  else if (e.key === "ArrowLeft") changeImage(-1);
-  else if (e.key === "Escape") closeLightbox();
-});
 </script></body>
 </html>
