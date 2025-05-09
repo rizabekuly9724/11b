@@ -1,6 +1,3 @@
-<button onclick="document.getElementById('myAudio').play()">Ойнату</button>
-<audio id="myAudio" loop>
-  <source src="ustazym.mp3" type="audio/mpeg">
 <!DOCTYPE html>
 <html lang="kk">
 <head>
@@ -46,13 +43,15 @@
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
-    audio {
-      display: none;
-    }
   </style>
 </head>
 <body>
+  <button onclick="document.getElementById('myAudio').play()">Ойнату</button>
+  <audio id="myAudio" loop>
+    <source src="ustazym.mp3" type="audio/mpeg">
+    Браузеріңіз аудио ойнатуды қолдамайды.
+  </audio>
+
   <h1>11-Б қайта оралды!</h1>
 
   <p>Күздің шуақты таңы. Баяғы мектеп. Кіреберісте Айгүл апай тұр. Қолында дәптер. Көңілі – толқулы.<br>
@@ -115,6 +114,5 @@
 
   <p>Күлкі естілді. Біреу жылап та үлгерді.<br>
   Бірақ бәрі бір сәтке қайта оқушы болды.</p>
-</audio>
-</audio> </body>
+</body>
 </html>
