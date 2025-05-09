@@ -184,7 +184,7 @@
 <img onclick="openLightbox(this.src)" src="f-10.jfif"/>
 <img onclick="openLightbox(this.src)" src="f-11.jfif"/>
 </div>
-<div id="lightbox" onclick="closeLightbox()"><button id="prevBtn" onclick="event.stopPropagation(); changeImage(-1);" style="position: absolute; left: 30px; font-size: 2rem; background: none; border: none; color: white; cursor: pointer; z-index:1000;">⬅</button><img id="lightbox-img" src=""/><button id="nextBtn" onclick="event.stopPropagation(); changeImage(1);" style="position: absolute; right: 30px; font-size: 2rem; background: none; border: none; color: white; cursor: pointer; z-index:1000;">➡</button></div>
+<div id="lightbox" onclick="closeLightbox()"><img id="lightbox-img" src=""/></div>
 <h2 style="text-align: center; margin-top: 60px;">Постерлер</h2>
 <div class="photo-gallery">
 <img onclick="openLightbox(this.src)" src="3d_Страница_01.jpg"/>
@@ -311,7 +311,6 @@
 <!-- Popup-текст -->
 <div id="toast">Құттықтау жіберілді!</div>
 <!-- Скрипты -->
-
 <div id="backToTop">⬆</div><script>
 // Анимация появления
 document.addEventListener("DOMContentLoaded", function() {
