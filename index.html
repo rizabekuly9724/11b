@@ -22,93 +22,74 @@
       text-align: center;
     }
 
-    .button {
-      display: inline-block;
-      margin-top: 40px;
-      padding: 12px 24px;
-      background-color: #444;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 8px;
-      font-size: 1em;
-      text-align: center;
-      transition: background-color 0.3s ease;
+    .hero-image {
+      width: 100%;
+      max-height: 400px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      border-radius: 10px;
+    }
+    .hero-image img {
+      width: 100%;
+      object-fit: cover;
+      display: block;
     }
 
-    .button:hover {
-      background-color: #666;
+    .photo-gallery {
+      display: flex;
+      overflow-x: auto;
+      gap: 10px;
+      padding: 10px 0;
+      scroll-snap-type: x mandatory;
     }
-.hero-image {
-  width: 100%;
-  max-height: 400px;
-  overflow: hidden;
-  margin-bottom: 30px;
-  border-radius: 10px;
-}
-.hero-image img {
-  width: 100%;
-  object-fit: cover;
-  display: block;
-}
-    /* --- Галерея --- */
-.photo-gallery {
-  display: flex;
-  overflow-x: auto;
-  gap: 10px;
-  padding: 10px 0;
-  scroll-snap-type: x mandatory;
-}
-.photo-gallery img {
-  height: 200px;
-  flex: 0 0 auto;
-  border-radius: 10px;
-  scroll-snap-align: center;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-.photo-gallery img:hover {
-  transform: scale(1.05);
-}
+    .photo-gallery img {
+      height: 200px;
+      flex: 0 0 auto;
+      border-radius: 10px;
+      scroll-snap-align: center;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .photo-gallery img:hover {
+      transform: scale(1.05);
+    }
 
-/* --- Лайтбокс --- */
-#lightbox {
-  display: none;
-  position: fixed;
-  z-index: 999;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.8);
-  justify-content: center;
-  align-items: center;
-}
-#lightbox img {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 10px;
-}
+    #lightbox {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+    }
+    #lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
-<body> 
-<!-- Фото на главной -->
-<div class="hero-image">
-  <img src="IMG_5456.PNG" alt="Қош келдіңіздер!" />
-</div>
-  <!-- Кнопка "Пуск" в виде иконки -->
-  <button onclick="document.getElementById('myAudio').play()" style="background:none; border:none; cursor:pointer; font-size: 32px;">
-  <!-- Аудио-трек -->
- <audio id="myAudio" muted autoplay loop controls>
-  <source src="ustazym_fixed.mp3" type="audio/mpeg">
-</audio>
+<body>
 
-<script>
-  document.getElementById('myAudio').muted = false;
-</script>
+  <div class="hero-image">
+    <img src="IMG_5456.PNG" alt="Қош келдіңіздер!" />
+  </div>
+
+  <button onclick="document.getElementById('myAudio').play()" style="background:none; border:none; cursor:pointer; font-size: 32px;">
+    ▶️
+  </button>
+
+  <audio id="myAudio" controls loop style="width: 100%; max-width: 400px;">
+    <source src="ustazym_fixed.mp3" type="audio/mpeg">
+    Браузеріңіз аудио ойнатуды қолдамайды.
   </audio>
-</body>
 
   <h1>11-Б қайта оралды!</h1>
 
@@ -172,36 +153,35 @@
 
   <p>Күлкі естілді. Біреу жылап та үлгерді.<br>
   Бірақ бәрі бір сәтке қайта оқушы болды.</p>
+
   <h2 style="text-align: center; margin-top: 60px;">Фото-естеліктер</h2>
-<div class="photo-gallery">
-  <img src="f-1.jfif" onclick="openLightbox(this.src)" />
-  <img src="f-2.jfif" onclick="openLightbox(this.src)" />
-  <img src="f-3.jfif" onclick="openLightbox(this.src)" />
-  <img src="f-4.JPG" onclick="openLightbox(this.src)" />
-  <img src="f-5.jfif" onclick="openLightbox(this.src)" />
-  <img src="f-6.JPG" onclick="openLightbox(this.src)" />
-  <img src="f-7.jfif" onclick="openLightbox(this.src)" />
-  <img src="f-8.jfif" onclick="openLightbox(this.src)" />
-  <img src="f-9.jfif" onclick="openLightbox(this.src)" />
-  <img src="f-10.jfif" onclick="openLightbox(this.src)" />
-  <img src="f-11.jfif" onclick="openLightbox(this.src)" />
-</div>
+  <div class="photo-gallery">
+    <img src="f-1.jfif" onclick="openLightbox(this.src)" />
+    <img src="f-2.jfif" onclick="openLightbox(this.src)" />
+    <img src="f-3.jfif" onclick="openLightbox(this.src)" />
+    <img src="f-4.JPG" onclick="openLightbox(this.src)" />
+    <img src="f-5.jfif" onclick="openLightbox(this.src)" />
+    <img src="f-6.JPG" onclick="openLightbox(this.src)" />
+    <img src="f-7.jfif" onclick="openLightbox(this.src)" />
+    <img src="f-8.jfif" onclick="openLightbox(this.src)" />
+    <img src="f-9.jfif" onclick="openLightbox(this.src)" />
+    <img src="f-10.jfif" onclick="openLightbox(this.src)" />
+    <img src="f-11.jfif" onclick="openLightbox(this.src)" />
+  </div>
 
-<!-- Лайтбокс -->
-<div id="lightbox" onclick="closeLightbox()">
-  <img id="lightbox-img" src="" />
-</div>
+  <div id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" />
+  </div>
 
-<!-- Скрипт -->
-<script>
-  function openLightbox(src) {
-    document.getElementById("lightbox-img").src = src;
-    document.getElementById("lightbox").style.display = "flex";
-  }
+  <script>
+    function openLightbox(src) {
+      document.getElementById("lightbox-img").src = src;
+      document.getElementById("lightbox").style.display = "flex";
+    }
+    function closeLightbox() {
+      document.getElementById("lightbox").style.display = "none";
+    }
+  </script>
 
-  function closeLightbox() {
-    document.getElementById("lightbox").style.display = "none";
-  }
-</script>
 </body>
 </html>
