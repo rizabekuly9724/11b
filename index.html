@@ -184,7 +184,7 @@
 <img onclick="openLightbox(this.src)" src="f-10.jfif"/>
 <img onclick="openLightbox(this.src)" src="f-11.jfif"/>
 </div>
-<div id="lightbox" onclick="closeLightbox()"><button id="prevBtn" onclick="event.stopPropagation(); changeImage(-1);">⬅</button><img id="lightbox-img" src=""/><button id="nextBtn" onclick="event.stopPropagation(); changeImage(1);">➡</button></div>
+<div id="lightbox" onclick="closeLightbox()"><button id="prevBtn" onclick="event.stopPropagation(); changeImage(-1);" style="position: absolute; left: 30px; font-size: 2rem; background: none; border: none; color: white; cursor: pointer; z-index:1000;">⬅</button><img id="lightbox-img" src=""/><button id="nextBtn" onclick="event.stopPropagation(); changeImage(1);" style="position: absolute; right: 30px; font-size: 2rem; background: none; border: none; color: white; cursor: pointer; z-index:1000;">➡</button></div>
 <h2 style="text-align: center; margin-top: 60px;">Постерлер</h2>
 <div class="photo-gallery">
 <img onclick="openLightbox(this.src)" src="3d_Страница_01.jpg"/>
@@ -311,23 +311,7 @@
 <!-- Popup-текст -->
 <div id="toast">Құттықтау жіберілді!</div>
 <!-- Скрипты -->
-<script>
-  function openLightbox(src) {
-    document.getElementById("lightbox-img").src = src;
-    document.getElementById("lightbox").style.display = "flex";
-  }
-  function closeLightbox() {
-    document.getElementById("lightbox").style.display = "none";
-  }
-  function showToast(name) {
-    const toast = document.getElementById("toast");
-    toast.textContent = name + 'ға құттықтау жіберілді!';
-    toast.classList.add("show");
-    setTimeout(() => {
-      toast.classList.remove("show");
-    }, 3000);
-  }
-</script>
+
 <div id="backToTop">⬆</div><script>
 // Анимация появления
 document.addEventListener("DOMContentLoaded", function() {
@@ -362,64 +346,49 @@ function showToast(name) {
 }
 </script><script>
 let currentIndex = 0;
-let images = [];
-
-document.querySelectorAll(".photo-gallery img").forEach((img, index) => {
-  img.addEventListener("click", () => {
-    images = Array.from(document.querySelectorAll(".photo-gallery img"));
-    currentIndex = index;
-    showLightbox(images[currentIndex].src);
-  });
-});
-
-function showLightbox(src) {
-  const lightbox = document.getElementById("lightbox");
-  const img = document.getElementById("lightbox-img");
-  img.src = src;
-  lightbox.style.display = "flex";
-}
-function closeLightbox() {
-  document.getElementById("lightbox").style.display = "none";
-}
-
-document.addEventListener("keydown", function(e) {
-  if (!images.length) return;
-  if (e.key === "ArrowRight") {
-    currentIndex = (currentIndex + 1) % images.length;
-    showLightbox(images[currentIndex].src);
-  } else if (e.key === "ArrowLeft") {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
-    showLightbox(images[currentIndex].src);
-  } else if (e.key === "Escape") {
-    closeLightbox();
-  }
-});
-</script><script>
-let currentIndex = 0;
-let galleryImages = Array.from(document.querySelectorAll('.photo-gallery img'));
+const galleryImages = Array.from(document.querySelectorAll('.photo-gallery img'));
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
 
 galleryImages.forEach((img, i) => {
   img.addEventListener('click', () => {
     currentIndex = i;
-    showLightbox(galleryImages[currentIndex].src);
+    updateLightbox();
   });
 });
 
-function showLightbox(src) {
-  const lightbox = document.getElementById("lightbox");
-  const img = document.getElementById("lightbox-img");
-  img.src = src;
+function updateLightbox() {
+  lightboxImg.src = galleryImages[currentIndex].src;
   lightbox.style.display = "flex";
 }
 
 function closeLightbox() {
-  document.getElementById("lightbox").style.display = "none";
+  lightbox.style.display = "none";
 }
 
 function changeImage(dir) {
   currentIndex = (currentIndex + dir + galleryImages.length) % galleryImages.length;
-  const img = document.getElementById("lightbox-img");
-  img.src = galleryImages[currentIndex].src;
+  updateLightbox();
 }
+
+// Клавиши
+document.addEventListener("keydown", function(e) {
+  if (lightbox.style.display === "flex") {
+    if (e.key === "ArrowRight") changeImage(1);
+    else if (e.key === "ArrowLeft") changeImage(-1);
+    else if (e.key === "Escape") closeLightbox();
+  }
+});
+
+// Свайп
+let startX = 0;
+lightbox.addEventListener("touchstart", (e) => {
+  startX = e.touches[0].clientX;
+});
+lightbox.addEventListener("touchend", (e) => {
+  let endX = e.changedTouches[0].clientX;
+  if (startX - endX > 50) changeImage(1); // свайп влево
+  else if (endX - startX > 50) changeImage(-1); // свайп вправо
+});
 </script></body>
 </html>
